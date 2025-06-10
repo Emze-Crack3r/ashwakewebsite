@@ -748,19 +748,25 @@ body {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  z-index: 9999; /* Make sure it sits on top */
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#mute-icon {
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 }
 
-#mute-toggle img {
-  width: 40px;
-  height: 40px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+#volume-slider {
+  width: 100px;
+  cursor: pointer;
 }
 
-#mute-toggle img:hover {
-  opacity: 1;
-}
 
 
