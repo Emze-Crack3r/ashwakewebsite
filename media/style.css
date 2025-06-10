@@ -894,5 +894,9 @@ body {
   cursor: pointer;
 }
 
+#volume-slider {
+  transition: all 0.3s ease;
+}
+
 
 
