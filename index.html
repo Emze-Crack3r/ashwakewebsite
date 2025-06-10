@@ -281,6 +281,12 @@
       : 'media/unmute_icon.png';
   }
 </script>
+<script>
+  const slider = document.getElementById('volume-slider');
+  slider.addEventListener('input', function () {
+    audio.volume = this.value;
+  });
+</script>
 
   </body>
 </html>
