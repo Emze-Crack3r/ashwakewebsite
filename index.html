@@ -266,18 +266,17 @@
   muteBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     audio.muted = !audio.muted;
+
+    // Sync slider with mute state
+    slider.value = audio.muted ? 0 : audio.volume || 1.0;
+
     updateIcon();
   });
 
   slider.addEventListener('input', () => {
     const volume = parseFloat(slider.value);
     audio.volume = volume;
-
-    // Unmute if volume is adjusted above 0
-    if (volume > 0 && audio.muted) {
-      audio.muted = false;
-    }
-
+    audio.muted = volume === 0;
     updateIcon();
   });
 
@@ -290,10 +289,8 @@
       muteIcon.className = 'fas fa-volume-up';
     }
   }
-
-  // Initialize icon state on load
-  updateIcon();
 </script>
+
 
 
 
