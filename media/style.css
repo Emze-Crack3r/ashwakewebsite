@@ -744,3 +744,22 @@ body {
         margin: .25rem;
     }
 }
+#mute-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+#mute-toggle img {
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+#mute-toggle img:hover {
+  opacity: 1;
+}
+
