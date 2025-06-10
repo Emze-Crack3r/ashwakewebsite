@@ -235,22 +235,24 @@
   Your browser does not support the audio element.
 </audio>
 
-<!-- Mute/Unmute Button -->
+<!-- Mute/Unmute Button + Volume Slider -->
 <div id="mute-toggle">
   <img id="mute-icon" src="media/mute_icon.png" alt="Toggle Sound">
   <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" />
 </div>
 
+
 <script>
   const audio = document.getElementById('bg-music');
   const icon = document.getElementById('mute-icon');
-  const toggle = document.getElementById('mute-toggle');
+  const slider = document.getElementById('volume-slider');
 
-  // Start muted to bypass autoplay restrictions
+  // Start muted (for autoplay rules)
   audio.muted = true;
-  audio.play().catch(() => {}); // Some browsers need interaction
+  audio.volume = 1.0;
+  audio.play().catch(() => {});
 
-  // Unmute on first click anywhere
+  // Unmute audio on first click
   const unlockAudio = () => {
     audio.muted = false;
     audio.play();
@@ -259,16 +261,26 @@
   };
   document.addEventListener('click', unlockAudio);
 
-  // Toggle mute on icon click
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent triggering unlockAudio
+  // Mute/unmute when clicking icon
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation();
     audio.muted = !audio.muted;
     updateIcon();
   });
 
+  // Adjust volume
+  slider.addEventListener('input', () => {
+    audio.volume = slider.value;
+    audio.muted = audio.volume == 0;
+    updateIcon();
+  });
+
   function updateIcon() {
-    icon.src = audio.muted ? 'media/mute_icon.png' : 'media/unmute_icon.png';
+    icon.src = audio.muted || audio.volume == 0
+      ? 'media/mute_icon.png'
+      : 'media/unmute_icon.png';
   }
 </script>
+
   </body>
 </html>
