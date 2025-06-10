@@ -763,12 +763,12 @@ body {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  filter: drop-shadow(0 0 4px #999);
+  filter: drop-shadow(0 0 4px #ba5309);
   transition: filter 0.3s ease;
 }
 
 #mute-icon:hover {
-  filter: drop-shadow(0 0 6px #fff);
+  filter: drop-shadow(0 0 6px #ba3009);
 }
 
 #volume-slider {
