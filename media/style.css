@@ -167,12 +167,15 @@ body {
 }
 
 .mobile_navbar .icon {
-    background-color: #00000044;
-    display: block;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     right: 0;
     top: 0;
-    padding: 16px;
+    padding: 12px;
+    cursor: pointer;
 }
 
 .mobile_navbar_logo_img_a {
