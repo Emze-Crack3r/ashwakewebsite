@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="media/style.css">
     <link href="https://fonts.bunny.net/css?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -238,7 +239,7 @@
 <!-- Mute/Unmute Button + Volume Slider -->
 <div id="mute-toggle" class="audio-controls">
   <button id="mute-btn" class="icon-btn">
-    <i id="mute-icon" class="fa fa-volume-up"></i>
+    <i id="mute-icon" class="fas fa-volume-up"></i>
   </button>
   <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" />
 </div>
@@ -282,11 +283,11 @@
 
   function updateIcon() {
     if (audio.muted || audio.volume === 0) {
-      muteIcon.className = 'fa fa-volume-mute';
+      muteIcon.className = 'fas fa-volume-mute';
     } else if (audio.volume < 0.5) {
-      muteIcon.className = 'fa fa-volume-down';
+      muteIcon.className = 'fas fa-volume-down';
     } else {
-      muteIcon.className = 'fa fa-volume-up';
+      muteIcon.className = 'fas fa-volume-up';
     }
   }
 
