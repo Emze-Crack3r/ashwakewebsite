@@ -768,5 +768,47 @@ body {
   cursor: pointer;
 }
 
+#volume-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 6px;
+  background: #444;
+  border-radius: 3px;
+  outline: none;
+  transition: background 0.3s;
+}
 
+#volume-slider:hover {
+  background: #666;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #999;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+  background: #ddd;
+  border-color: #bbb;
+}
+
+#volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #999;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s;
+}
+
+#volume-slider::-moz-range-thumb:hover {
+  background: #d
 
