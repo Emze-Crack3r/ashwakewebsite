@@ -92,43 +92,6 @@
             });
           });
         </script>
-<!-- Background Music -->
-<audio id="bg-music" autoplay loop>
-  <source src="media/background_music.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
-
-<!-- Mute/Unmute Button -->
-<button id="mute-btn" aria-label="Toggle Music"></button>
-
-<style>
-  #mute-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
-    background: url('media/unmute.png') no-repeat center center;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
-    z-index: 9999;
-  }
-</style>
-
-<script>
-  const audio = document.getElementById('bg-music');
-  const muteBtn = document.getElementById('mute-btn');
-  let isMuted = false;
-
-  muteBtn.addEventListener('click', () => {
-    isMuted = !isMuted;
-    audio.muted = isMuted;
-    muteBtn.style.backgroundImage = isMuted 
-      ? "url('media/mute.png')" 
-      : "url('media/unmute.png')";
-  });
-</script>
       </div>
       <div id="more"></div>
       <div class="main2">
@@ -267,5 +230,44 @@
     <footer class="copyright_div">
       <a href="www.ashwake.world" class="copyright">Ashwake • 2025</a>
     </footer>
+<audio id="bg-music" loop>
+  <source src="media/background_music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Mute/Unmute Button -->
+<div id="mute-toggle">
+  <img id="mute-icon" src="media/mute_icon.png" alt="Toggle Sound">
+</div>
+
+<script>
+  const audio = document.getElementById('bg-music');
+  const icon = document.getElementById('mute-icon');
+  const toggle = document.getElementById('mute-toggle');
+
+  // Start muted to bypass autoplay restrictions
+  audio.muted = true;
+  audio.play().catch(() => {}); // Some browsers need interaction
+
+  // Unmute on first click anywhere
+  const unlockAudio = () => {
+    audio.muted = false;
+    audio.play();
+    updateIcon();
+    document.removeEventListener('click', unlockAudio);
+  };
+  document.addEventListener('click', unlockAudio);
+
+  // Toggle mute on icon click
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent triggering unlockAudio
+    audio.muted = !audio.muted;
+    updateIcon();
+  });
+
+  function updateIcon() {
+    icon.src = audio.muted ? 'media/mute_icon.png' : 'media/unmute_icon.png';
+  }
+</script>
   </body>
 </html>
