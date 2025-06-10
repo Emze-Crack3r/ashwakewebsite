@@ -263,33 +263,54 @@
     document.removeEventListener('click', unlockAudio);
   });
 
+  // Animate the volume slider value smoothly
+  function animateSlider(toValue, duration = 300) {
+    const fromValue = parseFloat(slider.value);
+    const startTime = performance.now();
+
+    function animate(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const currentValue = fromValue + (toValue - fromValue) * progress;
+
+      slider.value = currentValue;
+      audio.volume = currentValue;
+      audio.muted = currentValue === 0;
+      updateIcon();
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Toggle mute with animation
   muteBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    audio.muted = !audio.muted;
-
-    // Sync slider with mute state
-    slider.value = audio.muted ? 0 : audio.volume || 1.0;
-
-    updateIcon();
+    const isMuting = !audio.muted;
+    animateSlider(isMuting ? 0 : 1);
   });
 
+  // Manual slider input
   slider.addEventListener('input', () => {
-    const volume = parseFloat(slider.value);
-    audio.volume = volume;
-    audio.muted = volume === 0;
+    audio.volume = slider.value;
+    audio.muted = slider.value == 0;
     updateIcon();
   });
 
   function updateIcon() {
-    if (audio.muted || audio.volume === 0) {
-      muteIcon.className = 'fas fa-volume-mute';
+    if (audio.muted || audio.volume == 0) {
+      muteIcon.className = "fa fa-volume-mute";
     } else if (audio.volume < 0.5) {
-      muteIcon.className = 'fas fa-volume-down';
+      muteIcon.className = "fa fa-volume-down";
     } else {
-      muteIcon.className = 'fas fa-volume-up';
+      muteIcon.className = "fa fa-volume-up";
     }
   }
 </script>
+
 
 
 
