@@ -269,15 +269,31 @@
   });
 
   slider.addEventListener('input', () => {
-    audio.volume = slider.value;
-    audio.muted = slider.value == 0;
+    const volume = parseFloat(slider.value);
+    audio.volume = volume;
+
+    // Unmute if volume is adjusted above 0
+    if (volume > 0 && audio.muted) {
+      audio.muted = false;
+    }
+
     updateIcon();
   });
 
   function updateIcon() {
-    muteIcon.className = audio.muted || audio.volume == 0 ? 'fa fa-volume-mute' : 'fa fa-volume-up';
+    if (audio.muted || audio.volume === 0) {
+      muteIcon.className = 'fa fa-volume-mute';
+    } else if (audio.volume < 0.5) {
+      muteIcon.className = 'fa fa-volume-down';
+    } else {
+      muteIcon.className = 'fa fa-volume-up';
+    }
   }
+
+  // Initialize icon state on load
+  updateIcon();
 </script>
+
 
 
   </body>
