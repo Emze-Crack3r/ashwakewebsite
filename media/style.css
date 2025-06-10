@@ -747,68 +747,91 @@ body {
 #mute-toggle {
   position: fixed;
   bottom: 20px;
-  left: 20px;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8px;
-  border-radius: 10px;
+  right: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  backdrop-filter: blur(5px);
 }
 
 #mute-icon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  filter: drop-shadow(0 0 4px #999);
+  transition: filter 0.3s ease;
 }
 
-#volume-slider {
-  width: 100px;
-  cursor: pointer;
+#mute-icon:hover {
+  filter: drop-shadow(0 0 6px #fff);
 }
 
 #volume-slider {
   -webkit-appearance: none;
   width: 100px;
   height: 6px;
-  background: #444;
+  background: #222;
   border-radius: 3px;
   outline: none;
   transition: background 0.3s;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
 }
 
 #volume-slider:hover {
-  background: #666;
+  background: #333;
 }
 
 #volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
-  background: #fff;
+  width: 16px;
+  height: 16px;
+  background: #00ffff;
   border-radius: 50%;
-  border: 2px solid #999;
+  border: none;
   cursor: pointer;
-  transition: background 0.3s, border 0.3s;
+  box-shadow: 0 0 8px #00ffff;
+  transition: box-shadow 0.3s, background 0.3s;
 }
 
 #volume-slider::-webkit-slider-thumb:hover {
-  background: #ddd;
-  border-color: #bbb;
+  background: #00e5e5;
+  box-shadow: 0 0 12px #00ffff;
 }
 
 #volume-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #fff;
+  width: 16px;
+  height: 16px;
+  background: #00ffff;
   border-radius: 50%;
-  border: 2px solid #999;
+  border: none;
   cursor: pointer;
-  transition: background 0.3s, border 0.3s;
+  box-shadow: 0 0 8px #00ffff;
+  transition: box-shadow 0.3s, background 0.3s;
 }
 
 #volume-slider::-moz-range-thumb:hover {
-  background: #d
+  background: #00e5e5;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  #mute-toggle {
+    bottom: 10px;
+    right: 10px;
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  #volume-slider {
+    width: 80px;
+  }
+}
+
 
